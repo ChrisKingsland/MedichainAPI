@@ -6,30 +6,27 @@ import java.util.Collection;
 import java.util.List;
 
 @Entity
-public class Users {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String firstname;
+    private String firstName;
     private String lastName;
     private String email;
     private String password;
     private boolean enabled;
     private boolean tokenExpired;
-    private Collection<Role> roles;
 
     @ManyToMany
     @JoinTable(
-            name = "user_roles",
+            name = "users_roles",
             joinColumns = @JoinColumn(
                     name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(
                     name = "role_id", referencedColumnName = "id"))
-
-
-
+    private Collection<Role> roles;
 
     public Collection<Role> getRoles() {
         return roles;
@@ -38,6 +35,7 @@ public class Users {
     public void setRoles(Collection<Role> roles) {
         this.roles = roles;
     }
+
 
     public Long getId() {
         return id;
@@ -48,12 +46,12 @@ public class Users {
         this.id = id;
     }
 
-    public String getFirstname() {
-        return firstname;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
+    public void setFirstName(String firstname) {
+        this.firstName = firstname;
     }
 
     public String getLastName() {
@@ -95,4 +93,9 @@ public class Users {
     public void setTokenExpired(boolean tokenExpired) {
         this.tokenExpired = tokenExpired;
     }
+
+
+
+
+
 }

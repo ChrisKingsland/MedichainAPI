@@ -1,5 +1,5 @@
 package com.fullstack.Medichaintest.roles;
-
+/*
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -17,7 +17,8 @@ import java.util.List;
 
 @Service("userDetailsService")
 @Transactional
-public class MyUserDetailsService implements UserDetailsService{
+public class MyUserDetailsService implements UserDetailsService {
+
     @Autowired
     private UserRepository userRepository;
 
@@ -30,11 +31,14 @@ public class MyUserDetailsService implements UserDetailsService{
     @Autowired
     private RoleRepository roleRepository;
 
+
+
     @Override
     public UserDetails loadUserByUsername(String email)
             throws UsernameNotFoundException {
 
-        Users user = userRepository.findByEmail(email);
+
+        User user = userRepository.findByEmail(email);
         if (user == null) {
             return new org.springframework.security.core.userdetails.User(
                     " ", " ", true, true, true, true,
@@ -74,10 +78,6 @@ public class MyUserDetailsService implements UserDetailsService{
         }
         return authorities;
     }
-
-
-
-
-
-
 }
+
+ */

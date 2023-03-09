@@ -8,8 +8,9 @@ import javax.print.Doc;
 import java.util.List;
 
 //import static com.sun.beans.introspect.PropertyInfo.Name.required;
-@CrossOrigin(origins = "http://localhost:3000/")
+
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping(path = "api/v1/document")
 public class DocumentController {
     private final DocumentService documentservice;  // reference to documentservice (Object)
@@ -24,6 +25,12 @@ public class DocumentController {
         return documentservice.getDocument();
 
     }
+
+    @GetMapping("gettest")
+    public String getDoc(){
+        return documentservice.getTest();
+    }
+
     @PostMapping("post")
     public void registerNewDocument(@RequestBody Document document){    //grabs JSON body from "post" endpoint
         System.out.println("123yooooooooooooooo" + document.getBytearray());

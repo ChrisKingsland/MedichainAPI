@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 
 @Entity
-@Table
+@Table()
 public class Document {
 
     @SequenceGenerator(name = "document_sequence", sequenceName = "document_sequence", allocationSize = 1)

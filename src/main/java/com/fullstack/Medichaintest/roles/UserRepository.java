@@ -3,7 +3,9 @@ package com.fullstack.Medichaintest.roles;
 import com.fullstack.Medichaintest.document.Document;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepository extends JpaRepository<Users,Long> {
+public interface UserRepository extends JpaRepository<User,Long> {
 
-    Users findByEmail(String email);
+    User findByEmail(String email);
+
+    boolean existsUsersByEmail(String email);
 }

@@ -25,6 +25,10 @@ public class DocumentService {
 
     }
 
+    public String getTest(){
+        return "Hello world";
+    }
+
     public void addNewDocument(Document document) {
         //System.out.println("hello " + document.getDescription());
         Optional <Document> documentOptional = documentRepository.findDocumentBybytearray(document.getBytearray());
