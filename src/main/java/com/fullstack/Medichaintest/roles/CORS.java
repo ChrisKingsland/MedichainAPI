@@ -12,10 +12,12 @@ public class CORS implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/api/*")
-                .allowedOrigins("https://4f4b-130-15-33-214.ngrok.io/api/v1/document/gettest")
+                .allowedOrigins("https://4f4b-130-15-33-214.ngrok.io")
                         .allowedMethods("GET", "POST", "PUT", "DELETE")
-                        .allowedHeaders("")
+                        .allowedHeaders("*")
                         .allowCredentials(true)
                         .maxAge(3600);
+                        //.exposedHeaders("Access-Control-Allow-Origin: *"); // add this line
+
     }
 }

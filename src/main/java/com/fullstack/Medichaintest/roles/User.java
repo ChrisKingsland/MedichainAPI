@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.List;
 
 @Entity
+@Table(name = "Userss")
 public class User {
 
     @Id
@@ -26,6 +27,8 @@ public class User {
                     name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(
                     name = "role_id", referencedColumnName = "id"))
+
+    // table shows what roles each User has
     private Collection<Role> roles;
 
     public Collection<Role> getRoles() {

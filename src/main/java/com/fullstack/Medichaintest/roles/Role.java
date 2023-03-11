@@ -25,6 +25,8 @@ public class Role {
                     name = "role_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(
                     name = "privilege_id", referencedColumnName = "id"))
+
+    // Table shows what privileges each role has
     private Collection<Privilege> Privileges;
 
 

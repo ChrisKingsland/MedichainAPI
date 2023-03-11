@@ -2,6 +2,8 @@ package com.fullstack.Medichaintest.document;
 
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.print.Doc;
@@ -10,7 +12,6 @@ import java.util.List;
 //import static com.sun.beans.introspect.PropertyInfo.Name.required;
 
 @RestController
-@CrossOrigin(origins = "*")
 @RequestMapping(path = "api/v1/document")
 public class DocumentController {
     private final DocumentService documentservice;  // reference to documentservice (Object)
@@ -25,10 +26,14 @@ public class DocumentController {
         return documentservice.getDocument();
 
     }
-
+    @CrossOrigin(exposedHeaders = {"Access-Control-Allow-Origin","Access-Control-Allow-Credentials", "Access-Control-Expose-Headers"})
     @GetMapping("gettest")
-    public String getDoc(){
-        return documentservice.getTest();
+    public String getTest() {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Access-Control-Allow-Origin", "*");
+        headers.add("Access-Control-Allow-Credentials", "true");
+        headers.add("Access-Control-Expose-Headers", "Authorization, Content-Type");
+        return "Hello World";
     }
 
     @PostMapping("post")

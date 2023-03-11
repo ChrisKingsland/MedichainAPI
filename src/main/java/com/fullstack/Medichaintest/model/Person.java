@@ -4,7 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
 import java.time.LocalDate;
-@Entity
+//@Entity
 public class Person {
     @Id
     private Long id;
