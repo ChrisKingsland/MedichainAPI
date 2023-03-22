@@ -23,6 +23,9 @@ public class PDFController {
 
     @PostMapping("post")
     public void addPdf(@RequestBody PDF pdf){
+        System.out.println("rrrrrrrrrrrrrrrrrrrrrrrrrrr");
+        System.out.println(pdf.getPdf());
+        System.out.println(pdf.getTitle());
         pdfService.addPdf(pdf);
     }
 

@@ -36,6 +36,12 @@ public class DocumentController {
         return "Hello World";
     }
 
+    @GetMapping("world")
+    public String ngrokTest(){
+        return "yuh we made it";
+    }
+
+
     @PostMapping("post")
     public void registerNewDocument(@RequestBody Document document){    //grabs JSON body from "post" endpoint
         System.out.println("123yooooooooooooooo" + document.getBytearray());

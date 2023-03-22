@@ -1,3 +1,4 @@
+/*
 package com.fullstack.Medichaintest.roles;
 
 import org.springframework.context.annotation.Configuration;
@@ -21,3 +22,6 @@ public class CORS implements WebMvcConfigurer {
 
     }
 }
+
+
+ */

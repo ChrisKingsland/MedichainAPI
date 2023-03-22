@@ -51,6 +51,14 @@
 			<version>12.2.0.jre11</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/org.apache.tomcat/tomcat-servlet-api -->
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-servlet-api</artifactId>
+			<version>10.1.7</version>
+		</dependency>
+
+
 
 
 

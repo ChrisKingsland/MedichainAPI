@@ -18,6 +18,8 @@ public class PDF {
 
     String title;
 
+    String testt;
+
     @ManyToMany(mappedBy = "pdfs", fetch = FetchType.LAZY)
     private Collection<User> users;
 
@@ -30,14 +32,23 @@ public class PDF {
         this.users = users;
     }
 
-    public PDF(Long id, String pdfArray, String title) {
+    public PDF(Long id, String pdfArray, String title, String testt) {
         this.id = id;
         this.pdfArray = pdfArray;
         this.title =title;
+        this.testt =testt;
     }
 
     public PDF(){
 
+    }
+
+    public String getTestt() {
+        return testt;
+    }
+
+    public void setTestt(String testt) {
+        this.testt = testt;
     }
 
     public Long getId() {
