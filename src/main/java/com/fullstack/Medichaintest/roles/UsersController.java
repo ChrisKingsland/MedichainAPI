@@ -12,6 +12,7 @@ import java.util.List;
 
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping(path = "api/v1/user")
 public class UsersController {
 
@@ -69,7 +70,6 @@ public class UsersController {
 
     }
 
-    @CrossOrigin(origins = "https://8844-184-147-171-210.ngrok.io")
     @GetMapping("/worldUser")
     public String ngrokTest(){
         return "yuh we made it";
@@ -82,9 +82,5 @@ public class UsersController {
 
         return ResponseEntity.ok(pdfs);
     }
-
-
-
-
 
 }
