@@ -1,3 +1,4 @@
+
 package com.fullstack.Medichaintest.roles;
 
 import java.io.IOException;
@@ -15,7 +16,7 @@ import org.springframework.stereotype.Component;
 
 
 @Component
-public class CORSv2 implements Filter {
+public class CORSv2 implements Filter, jakarta.servlet.Filter {
 
     private final Logger log = LoggerFactory.getLogger(CORSv2.class);
 
@@ -29,7 +30,7 @@ public class CORSv2 implements Filter {
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) res;
 
-        response.setHeader("Access-Control-Allow-Origin", request.getHeader("Origin"));
+        response.setHeader("Access-Control-Allow-Origin: *", request.getHeader("Origin"));
         response.setHeader("Access-Control-Allow-Credentials", "true");
         response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
         response.setHeader("Access-Control-Max-Age", "3600");
@@ -43,7 +44,13 @@ public class CORSv2 implements Filter {
     }
 
     @Override
+    public void doFilter(jakarta.servlet.ServletRequest servletRequest, jakarta.servlet.ServletResponse servletResponse, jakarta.servlet.FilterChain filterChain) throws IOException, jakarta.servlet.ServletException {
+
+    }
+
+    @Override
     public void destroy() {
     }
 
 }
+

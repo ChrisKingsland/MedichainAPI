@@ -69,6 +69,12 @@ public class UsersController {
 
     }
 
+    @CrossOrigin(origins = "https://8844-184-147-171-210.ngrok.io")
+    @GetMapping("/worldUser")
+    public String ngrokTest(){
+        return "yuh we made it";
+    }
+
     @GetMapping("getPDF/{id}")
     public ResponseEntity<Collection<PDF>> getUserPdfs(@PathVariable Long id){
         System.out.println("this is the IDDDDDDDDDDDD " + id);
@@ -76,10 +82,6 @@ public class UsersController {
 
         return ResponseEntity.ok(pdfs);
     }
-
-
-
-
 
 
 
