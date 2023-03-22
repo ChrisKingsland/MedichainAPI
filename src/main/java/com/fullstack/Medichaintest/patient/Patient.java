@@ -13,6 +13,8 @@ public class Patient {
     @Column(name = "PatientKey")
     private Long id;
 
+    private String email;
+
     private String FirstName;
 
     private String LastName;
@@ -27,8 +29,9 @@ public class Patient {
 
     private String pdf;
 
-    public Patient(Long id, String firstName, String lastName, String diagnosisName, String providerName, String medicationName, String testName, String pdf) {
+    public Patient(Long id, String email, String firstName, String lastName, String diagnosisName, String providerName, String medicationName, String testName, String pdf) {
         this.id = id;
+        this.email = email;
         FirstName = firstName;
         LastName = lastName;
         DiagnosisName = diagnosisName;
@@ -40,6 +43,7 @@ public class Patient {
 
     public Patient(){
 
+
     }
 
     public Long getId() {
@@ -48,6 +52,14 @@ public class Patient {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getFirstName() {

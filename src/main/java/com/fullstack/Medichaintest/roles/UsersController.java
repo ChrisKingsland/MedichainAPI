@@ -1,15 +1,18 @@
 package com.fullstack.Medichaintest.roles;
 
+import com.fullstack.Medichaintest.PDF.PDF;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collection;
 import java.util.List;
 
 //import static com.sun.beans.introspect.PropertyInfo.Name.required;
 
 
 @RestController
-@RequestMapping(path = "api/v1/document")
+@RequestMapping(path = "api/v1/user")
 public class UsersController {
 
     public final UserService userservice;
@@ -50,6 +53,28 @@ public class UsersController {
 
     ){
         userservice.updateUser(id, firstName,lastName, email, Password, enabled);
+    }
+
+    @PostMapping("addRole")
+    public void addRole(@RequestBody User user){
+        System.out.println("herrrerererererere");
+
+        userservice.addUser(user);
+    }
+
+    @PostMapping(value = "{assign}")
+    public void assignRole(@PathVariable(value = "assign") Long id){
+        System.out.println("qqqqqqqqqq" +id);
+        userservice.assignRole(id);
+
+    }
+
+    @GetMapping("getPDF/{id}")
+    public ResponseEntity<Collection<PDF>> getUserPdfs(@PathVariable Long id){
+        System.out.println("this is the IDDDDDDDDDDDD " + id);
+        Collection<PDF> pdfs = userservice.getUserPDFs(id);
+
+        return ResponseEntity.ok(pdfs);
     }
 
 

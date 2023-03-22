@@ -1,14 +1,12 @@
 package com.fullstack.Medichaintest.roles;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "api/v1/document")
+@RequestMapping(path = "api/v1/role")
 public class RoleController {
 
     public final RoleService roleservice;
@@ -23,6 +21,14 @@ public class RoleController {
 
         return roleservice.getAllRoles();
     }
+
+    @PostMapping("post")
+    public void postRole(@RequestBody Role role){
+        roleservice.postRole(role);
+    }
+
+
+
 
 
 

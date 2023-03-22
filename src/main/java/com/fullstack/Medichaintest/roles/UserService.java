@@ -1,11 +1,13 @@
 package com.fullstack.Medichaintest.roles;
 
 
+import com.fullstack.Medichaintest.PDF.PDF;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,11 +16,17 @@ public class UserService {
 
 
     private UserRepository userRepository;
+    //@Autowired
+    private final RoleRepository roleRepository;
 
     @Autowired
-    public UserService(UserRepository userRepository){
+    public UserService(UserRepository userRepository, RoleRepository roleRepository){
         this.userRepository=userRepository;
+        this.roleRepository =roleRepository;
     }
+
+
+
 
     public User getUser(Long id){
         return userRepository.getById(id);
@@ -29,11 +37,13 @@ public class UserService {
     }
 
     public void addUser(User user){
-        Optional<User> user1 = userRepository.findById(user.getId());
+        Optional<User> user1 = userRepository.findByEmail(user.getEmail());       //.findById(user.getId());
 
+        System.out.println("heloooooooooooooooooo");
         if( user1.isPresent()){
             throw new IllegalStateException("This user already exist");
         }
+
         userRepository.save(user);
 
     }
@@ -60,11 +70,19 @@ public class UserService {
         user.setEnabled(enabled);
     }
 
+    public void assignRole(Long id){
+
+        User user = userRepository.findById(id).orElseThrow(() -> new IllegalStateException("Document with id: " + id +" does not exist "));
+        Role role = roleRepository.findByName("ROLE_USER");
+        user.getRoles().add(role);
+        userRepository.save(user);
+
+    }
 
 
-
-
-
-
-
+    public Collection<PDF> getUserPDFs(Long id) {
+        User user = userRepository.findById(id).orElseThrow(() -> new IllegalStateException("user with id: " + id +" does not exist "));
+        //Collection<PDF> userPDFs = user != null ? user.getPdfs() : null;
+        return user.getPdfs();
+    }
 }

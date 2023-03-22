@@ -1,5 +1,7 @@
 package com.fullstack.Medichaintest.roles;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fullstack.Medichaintest.PDF.PDF;
 import jakarta.persistence.*;
 
 import java.util.Collection;
@@ -9,8 +11,10 @@ import java.util.List;
 @Table(name = "Userss")
 public class User {
 
+
+    @SequenceGenerator(name = "user_sequence", sequenceName = "user_sequence", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_sequence")
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String firstName;
@@ -20,16 +24,46 @@ public class User {
     private boolean enabled;
     private boolean tokenExpired;
 
-    @ManyToMany
+    @JsonIgnore
+    @ManyToMany(cascade=CascadeType.PERSIST, fetch = FetchType.LAZY)
     @JoinTable(
             name = "users_roles",
             joinColumns = @JoinColumn(
                     name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(
-                    name = "role_id", referencedColumnName = "id"))
-
-    // table shows what roles each User has
+                    name = "role_id", referencedColumnName = "id")
+    )
     private Collection<Role> roles;
+
+
+    @JsonIgnore
+    @ManyToMany(cascade=CascadeType.PERSIST, fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "users_pdfs",
+            joinColumns = @JoinColumn(
+                    name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(
+                    name = "pdf_id", referencedColumnName = "id")
+    )
+    private Collection<PDF> pdfs;
+
+
+    public Collection<PDF> getPdfs() {
+        return pdfs;
+    }
+
+    public void setPdfs(Collection<PDF> pdfs) {
+        this.pdfs = pdfs;
+    }
+
+    public User(){
+
+    }
+    public User(Collection<Role> roles,Collection<PDF> pdfs) {
+        this.roles = roles;
+        this.pdfs = pdfs;
+
+    }
 
     public Collection<Role> getRoles() {
         return roles;
