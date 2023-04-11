@@ -63,6 +63,7 @@ public class DocumentService {
             }
             document.setDescription(Description);
         }
+        documentRepository.save(document);
 
     }
 /*
